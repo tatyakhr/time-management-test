@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+
+<body>
+    <!-- start quiz -->
+    <form id="time_management_quiz_form">
+        <table>
+            <tr>
+                <td>Statement</td>
+                <td>Rarely or never</td>
+                <td>Occasionally</td>
+                <td>Sometimes</td>
+                <td>Often</td>
+                <td>Almost always or always</td>
+            </tr>
+            <tr>
+                <td>I set aside specific times for studying, homework, and assignments.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q1" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q1" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q1" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q1" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q1" value="5"></td>
+            </tr>
+            <tr>
+                <td>I use a planner or digital tool to keep track of my schedule and deadlines.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q2" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q2" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q2" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q2" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q2" value="5"></td>
+            </tr>
+            <tr>
+                <td>I avoid procrastination and start working on tasks as soon as possible.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q3" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q3" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q3" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q3" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q3" value="5"></td>
+            </tr>
+            <tr>
+                <td>I prioritize self-care activities like exercise, sleep, and relaxation.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q4" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q4" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q4" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q4" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q4" value="5"></td>
+            </tr>
+            <tr>
+                <td>I am able to estimate how much time a task will take me to complete accurately.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q5" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q5" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q5" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q5" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q5" value="5"></td>
+            </tr>
+            <tr>
+                <td>I break down large tasks into smaller, more manageable ones.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q6" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q6" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q6" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q6" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q6" value="5"></td>
+            </tr>
+            <tr>
+                <td>I am comfortable saying "no" to social activities that interfere with my academic responsibilities.
+                </td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q7" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q7" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q7" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q7" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q7" value="5"></td>
+            </tr>
+            <tr>
+                <td>I regularly evaluate my progress and adjust my schedule and study strategies accordingly.</td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q8" value="1"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q8" value="2"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q8" value="3"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q8" value="4"></td>
+                <td><input class="time_management_quiz_variant" type="radio" name="q8" value="5"></td>
+            </tr>
+        </table>
+        <button type="submit" disabled id="testSubmit">Calculate My Results</button>
+        <p id="testResult"></p>
+    </form>
+
+    <script>
+        const form = document.getElementById('time_management_quiz_form');
+        const radioButtons = document.querySelectorAll('input[type="radio"].time_management_quiz_variant');
+        const submitButton = document.getElementById("testSubmit");
+
+
+        radioButtons.forEach(radioButton => {
+            radioButton.addEventListener('click', () => {
+                if (areAllInputsSelected()) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        });
+
+        function areAllInputsSelected() {
+            const radioQ1 = document.querySelectorAll('input[type="radio"][name="q1"]');
+            const radioQ2 = document.querySelectorAll('input[type="radio"][name="q2"]');
+            const radioQ3 = document.querySelectorAll('input[type="radio"][name="q3"]');
+            const radioQ4 = document.querySelectorAll('input[type="radio"][name="q4"]');
+            const radioQ5 = document.querySelectorAll('input[type="radio"][name="q5"]');
+            const radioQ6 = document.querySelectorAll('input[type="radio"][name="q6"]');
+            const radioQ7 = document.querySelectorAll('input[type="radio"][name="q7"]');
+            const radioQ8 = document.querySelectorAll('input[type="radio"][name="q8"]');
+            const isSelectedQ1 = Array.from(radioQ1).some((element) => element.checked);
+            const isSelectedQ2 = Array.from(radioQ2).some((element) => element.checked);
+            const isSelectedQ3 = Array.from(radioQ3).some((element) => element.checked);
+            const isSelectedQ4 = Array.from(radioQ4).some((element) => element.checked);
+            const isSelectedQ5 = Array.from(radioQ5).some((element) => element.checked);
+            const isSelectedQ6 = Array.from(radioQ6).some((element) => element.checked);
+            const isSelectedQ7 = Array.from(radioQ7).some((element) => element.checked);
+            const isSelectedQ8 = Array.from(radioQ8).some((element) => element.checked);
+
+            const areAllSelected = [isSelectedQ1, isSelectedQ2, isSelectedQ3, isSelectedQ4, isSelectedQ5, isSelectedQ6, isSelectedQ7, isSelectedQ8]
+                .every(value => value === true);
+            return areAllSelected;
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const sum = getSum();
+            let resultText;
+            if (sum <= 13) {
+                resultText = "Room for improvement: If you answered \"Rarely or never\" or \"Occasionally\" to most of the questions, this means that you have room for improvement in your scheduling skills. You might struggle with procrastination, lack of planning, or difficulties prioritizing your tasks, and this can affect your academic performance and increase stress levels. To improve your scheduling skills, consider setting clear goals and deadlines, breaking down large tasks into smaller ones, using a planner or digital tool like the ones we mentioned earlier to keep track of your schedule, and seeking support or resources from academic advisors or counselors.";
+            } else if (sum > 13 && sum < 32) {
+                resultText = "Mixed results: If your answers are a mix of \"Almost always or always,\" \"Occasionally,\" and \"Sometimes\" it indicates that you have some areas of strength and some areas for improvement. You may need to work on developing a more consistent routine, improving your planning and prioritization skills, and avoiding distractions to enhance your overall scheduling skills. To improve your skills, consider identifying areas of weakness and setting specific goals to address them, seeking feedback or guidance from peers or mentors, and experimenting with different scheduling strategies to find what works best for you.";
+            } else {
+                resultText = "Strong time management skills: If you answered \"Almost always or always\" to most of the questions, this indicates that you have strong scheduling skills. You are more likely to be organized, disciplined, and focused on your academic responsibilities, and this can help you achieve your goals efficiently. If you want to maintain and further enhance your skills, consider challenging yourself with more complex tasks or projects, seeking out new opportunities for growth, and continuously refining your scheduling strategies.";
+            }
+            document.getElementById("testResult").textContent = `Your score is ${sum}. ${resultText}`;
+        });
+
+        function getSum() {
+            let sum = 0;
+            radioButtons.forEach(radioButton => {
+                if (radioButton.checked) {
+                    sum += parseInt(radioButton.value);
+                }
+            });
+            return sum;
+        }
+
+    </script>
+    <!-- end quiz -->
+
+</body>
+
+</html>
